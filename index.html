@@ -237,6 +237,14 @@ html.demo .demobar{display:block}
 @keyframes rqPop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
 .rq-done p{color:rgba(190,215,240,.75);font-size:14px;line-height:1.55;margin:6px 0 16px}
 @media (prefers-reduced-motion:reduce){#reqDlg[open],.rq-tick,.rq-go.busy::after{animation:none}}
+
+/* Calm footer for the referee-facing questionnaire (the full show stays on the lock screen) */
+.wfd-footer.calm{padding:22px 20px 20px;margin-top:44px}
+.wfd-footer.calm::before,.wfd-footer.calm::after,.wfd-footer.calm .wfd-shoot{display:none}
+.wfd-footer.calm .wfd-logo{font-size:15px;letter-spacing:.34em;margin:0 0 8px;animation:none;filter:none;transform:none;will-change:auto;
+  background:linear-gradient(90deg,#d9f6ff,#10d8ff 45%,#c8a0ff);-webkit-background-clip:text;background-clip:text}
+.wfd-footer.calm .wfd-copy{font-size:12px;line-height:1.7;letter-spacing:.04em;margin:0;color:rgba(170,190,210,.55)}
+.wfd-footer.calm .wfd-copy a{color:rgba(120,220,255,.65)}
 </style><script>try{var q=new URLSearchParams(location.search).get("r");if(!q&&sessionStorage.getItem("wfd_ok")!=="1")document.documentElement.classList.add("locked")}catch(e){document.documentElement.classList.add("locked")}</script>
 </head><body>
 <div class="lock" id="lock" role="dialog" aria-modal="true" aria-label="Whetū Digital secure access">
@@ -327,12 +335,9 @@ html.demo .demobar{display:block}
   © 2026 Whetū Digital Ltd. All rights reserved.
   Contact: hello@whetudigital.co.nz
 -->
-<div class="wfd-footer"><i class="wfd-shoot" aria-hidden="true"></i>
+<div class="wfd-footer calm">
   <div class="wfd-logo">WHETŪ DIGITAL</div>
-  <div class="wfd-tagline">Digital Tools for Modern Living — Aotearoa New Zealand</div>
-  <div class="wfd-copy">© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
-  <div class="wfd-dedrow"><span class="wfd-ded">Built with care for STL Rentals NZ</span> <span class="wfd-heart">♥</span></div>
-  <span class="wfd-badge">Licensed Dashboard — Whetū Digital 2026</span>
+  <div class="wfd-copy">Built with care for STL Rentals NZ<br>© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
 </div>
 <script>
 
