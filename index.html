@@ -245,12 +245,20 @@ html.demo .demobar{display:block}
   background:linear-gradient(90deg,#d9f6ff,#10d8ff 45%,#c8a0ff);-webkit-background-clip:text;background-clip:text}
 .wfd-footer.calm .wfd-copy{font-size:12px;line-height:1.7;letter-spacing:.04em;margin:0;color:rgba(170,190,210,.55)}
 .wfd-footer.calm .wfd-copy a{color:rgba(120,220,255,.65)}
+
+.lk-star{display:block;width:clamp(44px,12vw,60px);height:auto;margin:0 auto 10px;filter:drop-shadow(0 0 14px rgba(16,216,255,.55)) drop-shadow(0 0 30px rgba(192,64,255,.35));animation:lkStar 5.5s ease-in-out infinite}
+@keyframes lkStar{0%,100%{transform:scale(.94) rotate(-3deg);filter:drop-shadow(0 0 10px rgba(16,216,255,.45)) drop-shadow(0 0 22px rgba(192,64,255,.25))}50%{transform:scale(1.06) rotate(3deg);filter:drop-shadow(0 0 20px rgba(16,216,255,.8)) drop-shadow(0 0 40px rgba(192,64,255,.5))}}
+@media (prefers-reduced-motion:reduce){.lk-star{animation:none}}
 </style><script>try{var q=new URLSearchParams(location.search).get("r");if(!q&&sessionStorage.getItem("wfd_ok")!=="1")document.documentElement.classList.add("locked")}catch(e){document.documentElement.classList.add("locked")}</script>
 </head><body>
 <div class="lock" id="lock" role="dialog" aria-modal="true" aria-label="Whetū Digital secure access">
   <div class="aurora"></div><canvas id="stars" aria-hidden="true"></canvas><div class="vig"></div>
   <div class="lk-main">
-    <div class="lk-brand"><div class="wfd-logo">WHETŪ DIGITAL</div><div class="tag">Digital Tools for Modern Living</div></div>
+    <div class="lk-brand"><svg class="lk-star" viewBox="0 0 100 100" aria-hidden="true"><defs><filter id="lkGl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
+ <circle cx="50" cy="50" r="22" fill="rgba(16,216,255,.22)" filter="url(#lkGl)"/>
+ <g><polygon points="50,4 42,42 50,50" fill="#00e5ff"/><polygon points="50,4 58,42 50,50" fill="#0a8fd0"/><polygon points="96,50 58,42 50,50" fill="#6a1bff"/><polygon points="96,50 58,58 50,50" fill="#4400b0"/>
+ <polygon points="50,96 58,58 50,50" fill="#e020ff"/><polygon points="50,96 42,58 50,50" fill="#9a00c8"/><polygon points="4,50 42,58 50,50" fill="#0a8fd0"/><polygon points="4,50 42,42 50,50" fill="#00e5ff"/></g>
+ <circle cx="50" cy="50" r="5.5" fill="#fff"/></svg><div class="wfd-logo">WHETŪ DIGITAL</div><div class="tag">Digital Tools for Modern Living</div></div>
     <div class="lk-panel" id="lkPanel">
       <div class="lk-status"><i></i><span id="lkState">LOCKED</span></div>
       <h1 class="lk-title">Secure access</h1>
@@ -545,25 +553,40 @@ function enterDemo(){
     if(/^\d$/.test(e.key))press(e.key);else if(e.key==="Backspace")press("del");else if(e.key==="Escape")press("clr")});
   paint();tick();
 
-  /* constellation starfield */
-  const cv=$("#stars"),cx=cv.getContext("2d");let W=0,Hh=0,stars=[],raf=0,mx=0,my=0,run=true;
+  /* constellation starfield: 3 depth layers, cursor-linked constellation, rare shooting stars (cheap: sprites + grid + capped fps on phones) */
+  const cv=$("#stars"),cx=cv.getContext("2d");let W=0,Hh=0,stars=[],shoots=[],raf=0,mx=0,my=0,ptx=-999,pty=-999,run=true,nextShoot=0,last=0,small=false;
   const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches;
-  function size(){const d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;Hh=cv.clientHeight;cv.width=W*d;cv.height=Hh*d;cx.setTransform(d,0,0,d,0,0);
-    const n=Math.round(Math.min(110,Math.max(46,W*Hh/14000)));stars=[];
-    for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*Hh,z:Math.random()*.9+.1,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,t:Math.random()*6.28,c:Math.random()<.5?"16,216,255":(Math.random()<.5?"192,64,255":"210,230,255")})}
-  function frame(){
-    if(!run)return;cx.clearRect(0,0,W,Hh);
+  const COLS=["16,216,255","192,64,255","210,230,255","0,255,153"],SP={};
+  function sprite(c,sz){const k=c+"|"+sz;if(SP[k])return SP[k];const o=document.createElement("canvas");o.width=o.height=sz;const g=o.getContext("2d"),r=g.createRadialGradient(sz/2,sz/2,0,sz/2,sz/2,sz/2);r.addColorStop(0,"rgba("+c+",1)");r.addColorStop(1,"rgba("+c+",0)");g.fillStyle=r;g.fillRect(0,0,sz,sz);return SP[k]=o}
+  function size(){const d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;Hh=cv.clientHeight;cv.width=W*d;cv.height=Hh*d;cx.setTransform(d,0,0,d,0,0);small=W<700;
+    const n=Math.round(Math.min(small?70:120,Math.max(54,W*Hh/10500)));stars=[];
+    for(let i=0;i<n;i++){const L=i%3,z=[.25,.55,1][L]*(.8+Math.random()*.2),q=Math.random();
+      stars.push({x:Math.random()*W,y:Math.random()*Hh,z,vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,t:Math.random()*6.28,r:[.7,1.1,1.6][L]+Math.random()*.4,c:COLS[q<.45?0:q<.75?1:q<.93?2:3],big:L===2&&Math.random()<.2,px:0,py:0})}}
+  function frame(now){
+    if(!run)return;
+    if(small&&now-last<30){raf=reduce?0:requestAnimationFrame(frame);return}last=now;
+    cx.clearRect(0,0,W,Hh);
     for(const s of stars){if(!reduce){s.x+=s.vx*s.z;s.y+=s.vy*s.z;s.t+=.02;if(s.x<-10)s.x=W+10;if(s.x>W+10)s.x=-10;if(s.y<-10)s.y=Hh+10;if(s.y>Hh+10)s.y=-10}
-      const px=s.x+mx*s.z*14,py=s.y+my*s.z*14,a=.35+.4*Math.sin(s.t)*s.z+.2;s.px=px;s.py=py;
-      cx.beginPath();cx.arc(px,py,s.z*1.5+.3,0,6.283);cx.fillStyle="rgba("+s.c+","+Math.min(1,a)+")";cx.fill()}
-    const L=110;cx.lineWidth=.6;
-    for(let i=0;i<stars.length;i++)for(let j=i+1;j<stars.length;j++){const a=stars[i],b=stars[j],dx=a.px-b.px,dy=a.py-b.py,d=dx*dx+dy*dy;
-      if(d<L*L){cx.strokeStyle="rgba(16,216,255,"+(.16*(1-Math.sqrt(d)/L))+")";cx.beginPath();cx.moveTo(a.px,a.py);cx.lineTo(b.px,b.py);cx.stroke()}}
+      s.px=s.x+mx*s.z*18;s.py=s.y+my*s.z*18;const a=Math.min(1,.32+.42*Math.sin(s.t)*s.z+.28*s.z);s.a=a;
+      if(s.big){const R=s.r*14;cx.globalAlpha=a*.6;cx.drawImage(sprite(s.c,64),s.px-R/2,s.py-R/2,R,R);cx.globalAlpha=1}
+      cx.fillStyle="rgba("+s.c+","+a+")";cx.fillRect(s.px-s.r,s.py-s.r,s.r*2,s.r*2)}
+    const L=120,grid=new Map();cx.lineWidth=.6;
+    for(let i=0;i<stars.length;i++){const s=stars[i],k=((s.px/L)|0)+","+((s.py/L)|0);(grid.get(k)||grid.set(k,[]).get(k)).push(i)}
+    for(let i=0;i<stars.length;i++){const A=stars[i],gx=(A.px/L)|0,gy=(A.py/L)|0;
+      for(let ox=-1;ox<=1;ox++)for(let oy=-1;oy<=1;oy++){const c=grid.get((gx+ox)+","+(gy+oy));if(!c)continue;
+        for(const j of c){if(j<=i)continue;const B=stars[j],dx=A.px-B.px,dy=A.py-B.py,d=dx*dx+dy*dy;
+          if(d<L*L){cx.strokeStyle="rgba(16,216,255,"+(.17*(1-Math.sqrt(d)/L))+")";cx.beginPath();cx.moveTo(A.px,A.py);cx.lineTo(B.px,B.py);cx.stroke()}}}}
+    if(ptx>-900){const R=170;for(const s of stars){const dx=s.px-ptx,dy=s.py-pty,d=Math.sqrt(dx*dx+dy*dy);if(d<R){cx.strokeStyle="rgba(192,64,255,"+(.5*(1-d/R))+")";cx.lineWidth=.8;cx.beginPath();cx.moveTo(ptx,pty);cx.lineTo(s.px,s.py);cx.stroke()}}
+      cx.globalAlpha=.55;cx.drawImage(sprite("16,216,255",64),ptx-60,pty-60,120,120);cx.globalAlpha=1}
+    if(!reduce){if(now>nextShoot){nextShoot=now+7000+Math.random()*7000;shoots.push({x:Math.random()*W*.6,y:Math.random()*Hh*.35,vx:7+Math.random()*3,vy:2.6+Math.random()*1.6,life:1})}
+      for(let i=shoots.length-1;i>=0;i--){const s=shoots[i];s.x+=s.vx;s.y+=s.vy;s.life-=.018;if(s.life<=0||s.x>W+80){shoots.splice(i,1);continue}
+        const g=cx.createLinearGradient(s.x,s.y,s.x-s.vx*9,s.y-s.vy*9);g.addColorStop(0,"rgba(255,255,255,"+s.life+")");g.addColorStop(1,"rgba(16,216,255,0)");cx.strokeStyle=g;cx.lineWidth=1.6;cx.beginPath();cx.moveTo(s.x,s.y);cx.lineTo(s.x-s.vx*9,s.y-s.vy*9);cx.stroke()}}
     raf=reduce?0:requestAnimationFrame(frame)}
   window.stopStars=function(){run=false;cancelAnimationFrame(raf)};
-  size();frame();addEventListener("resize",()=>{size();if(reduce)frame()});
-  addEventListener("pointermove",e=>{mx=(e.clientX/W-.5)*2;my=(e.clientY/Hh-.5)*2},{passive:true});
-  document.addEventListener("visibilitychange",()=>{if(document.hidden){cancelAnimationFrame(raf)}else if(run&&!reduce){frame()}});
+  size();nextShoot=performance.now()+3500;frame(performance.now());addEventListener("resize",()=>{size();if(reduce)frame(performance.now())});
+  addEventListener("pointermove",e=>{mx=(e.clientX/W-.5)*2;my=(e.clientY/Hh-.5)*2;ptx=e.clientX;pty=e.clientY},{passive:true});
+  addEventListener("pointerleave",()=>{ptx=-999;pty=-999});document.addEventListener("pointerup",e=>{if(e.pointerType==="touch"){ptx=-999;pty=-999}});
+  document.addEventListener("visibilitychange",()=>{if(document.hidden){cancelAnimationFrame(raf)}else if(run&&!reduce){raf=requestAnimationFrame(frame)}});
 })();
 
 </script></body></html>
