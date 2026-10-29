@@ -1,5 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><meta name="theme-color" content="#05050e"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tenant reference - STL Rentals NZ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
 /* Layout: one calm column that follows the STL Rentals NZ email signature (cream card, navy ink, gold rule). Numbered questions are a real sequence. */
@@ -89,7 +90,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px 
 .wfd-tagline{font-size:12px;color:rgba(180,200,220,.5);letter-spacing:2px;margin:0 0 10px}
 .wfd-copy{font-size:11px;color:rgba(140,160,180,.4);letter-spacing:1px;margin-bottom:12px}
 .wfd-copy a{color:rgba(0,230,255,.4);text-decoration:none}
-.wfd-ded{font-size:14px;letter-spacing:2px;margin:0 0 10px;display:block;
+.wfd-ded{font-size:14px;letter-spacing:2px;margin:0 0 10px;display:inline-block;
   background:linear-gradient(90deg,rgba(255,255,255,.7) 0%,#fff 40%,#ffb3c6 70%,rgba(255,255,255,.7) 100%);
   background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;animation:wfdDedA 4s ease-in-out infinite,wfdDedG 3s ease-in-out infinite alternate}
@@ -97,11 +98,111 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px 
 @keyframes wfdDedG{from{filter:drop-shadow(0 0 4px rgba(255,160,180,.3))}to{filter:drop-shadow(0 0 14px rgba(255,160,180,.9))}}
 .wfd-heart{-webkit-text-fill-color:#ff6b8a;color:#ff6b8a;display:inline-block;animation:wfdHB 1.4s ease-in-out infinite}
 @keyframes wfdHB{0%,100%{transform:scale(1)}14%{transform:scale(1.35)}28%{transform:scale(1)}42%{transform:scale(1.2)}56%{transform:scale(1)}}
+.wfd-footer{display:flex;flex-direction:column;align-items:center}
+.wfd-dedrow{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 10px}.wfd-dedrow .wfd-ded{margin:0}
 .wfd-badge{display:inline-block;padding:4px 14px;border-radius:20px;background:rgba(0,230,255,.06);border:1px solid rgba(0,230,255,.2);font-size:11px;color:rgba(140,160,180,.6);letter-spacing:1px}
 .promo{margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;background:var(--surface);font-size:15px}
 .promo b{font-family:var(--display)}.promo a{color:var(--ink);font-weight:600}
 @media (prefers-reduced-motion:reduce){.wfd-logo,.wfd-ded,.wfd-heart{animation:none}}
-</style></head><body>
+
+/* ---------- Whetu PIN gate ---------- */
+html.locked,html.locked body{overflow:hidden;background:#05050e}
+html.locked .wrap,html.locked > body > .wfd-footer{display:none}
+.lock{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;overflow-y:auto;overflow-x:hidden;color:#e8f4ff;font-family:'Space Grotesk',system-ui,sans-serif;background:#05050e;-webkit-tap-highlight-color:transparent}
+html.locked .lock{display:flex}
+.lock *{box-sizing:border-box}
+.lock canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.lock .aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(40px);opacity:.9;
+  background:radial-gradient(40% 35% at 20% 25%,rgba(16,216,255,.22),transparent 70%),radial-gradient(38% 40% at 80% 20%,rgba(192,64,255,.22),transparent 70%),radial-gradient(45% 35% at 55% 90%,rgba(0,255,153,.12),transparent 70%);
+  animation:lkDrift 18s ease-in-out infinite alternate}
+@keyframes lkDrift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
+.lock .vig{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(5,5,14,.85) 100%)}
+.lk-main{position:relative;z-index:1;flex:1 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:34px 18px 26px;gap:18px}
+.lk-main>:first-child{margin-top:auto}.lk-main>:last-child{margin-bottom:auto}
+.lk-brand{text-align:center}
+.lk-brand .wfd-logo{font-size:clamp(26px,7vw,40px);margin-bottom:8px}
+.lk-brand .tag{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.32em;text-transform:uppercase;color:rgba(160,200,230,.55)}
+.lk-panel{width:min(340px,100%);padding:22px 20px 20px;border-radius:22px;position:relative;
+  background:linear-gradient(160deg,rgba(14,20,44,.72),rgba(8,10,26,.72));
+  border:1px solid rgba(16,216,255,.18);box-shadow:0 0 0 1px rgba(192,64,255,.08) inset,0 30px 80px -20px rgba(0,0,0,.7),0 0 60px -10px rgba(16,216,255,.18);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:box-shadow .5s,border-color .5s,transform .6s}
+.lk-panel::before{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;pointer-events:none;
+  background:conic-gradient(from var(--a,0deg),rgba(16,216,255,.0),rgba(16,216,255,.7),rgba(192,64,255,.7),rgba(16,216,255,0) 40%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lkSpin 7s linear infinite}
+@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes lkSpin{to{--a:360deg}}
+.lk-status{display:flex;align-items:center;justify-content:center;gap:8px;font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.28em;color:#c040ff;margin-bottom:14px}
+.lk-status i{width:7px;height:7px;border-radius:50%;background:#c040ff;box-shadow:0 0 10px #c040ff;animation:lkBlink 1.6s ease-in-out infinite}
+@keyframes lkBlink{50%{opacity:.25}}
+.lk-title{text-align:center;font:700 22px/1.15 'Space Grotesk',sans-serif;letter-spacing:.01em;margin:0 0 4px}
+.lk-sub{text-align:center;font-size:13px;color:rgba(190,215,240,.6);margin:0 0 18px}
+.lk-slots{display:flex;justify-content:center;gap:14px;margin-bottom:6px}
+.lk-slot{width:46px;height:54px;border-radius:14px;border:1px solid rgba(16,216,255,.25);background:rgba(4,6,18,.6);display:grid;place-items:center;transition:all .18s}
+.lk-slot b{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,#10d8ff,#c040ff);box-shadow:0 0 14px rgba(16,216,255,.9);transform:scale(0);transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
+.lk-slot.on{border-color:rgba(16,216,255,.7);box-shadow:0 0 18px rgba(16,216,255,.25)}
+.lk-slot.on b{transform:scale(1)}
+.lk-slot.cur{border-color:rgba(192,64,255,.6);animation:lkCur 1.2s ease-in-out infinite}
+@keyframes lkCur{50%{box-shadow:0 0 16px rgba(192,64,255,.4)}}
+.lk-msg{min-height:20px;text-align:center;font:500 11px/20px 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(160,200,230,.55);margin:6px 0 10px;text-transform:uppercase}
+.lk-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.lk-pad button{height:clamp(54px,9.5vh,64px);border-radius:16px;border:1px solid rgba(120,170,255,.14);background:linear-gradient(180deg,rgba(26,34,66,.7),rgba(12,16,38,.7));color:#e8f4ff;font:500 24px 'Space Grotesk',sans-serif;cursor:pointer;position:relative;overflow:hidden;transition:transform .08s,background .2s,border-color .2s,box-shadow .2s;touch-action:manipulation}
+.lk-pad button:hover{border-color:rgba(16,216,255,.45);box-shadow:0 0 22px -4px rgba(16,216,255,.45)}
+.lk-pad button:active{transform:scale(.94);background:linear-gradient(180deg,rgba(16,216,255,.22),rgba(192,64,255,.18))}
+.lk-pad button:focus-visible{outline:2px solid #10d8ff;outline-offset:2px}
+.lk-pad .fn{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.18em;color:rgba(160,200,230,.7)}
+.lk-pad button.hit::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(16,216,255,.5),transparent 60%);animation:lkRip .5s ease-out forwards}
+@keyframes lkRip{from{opacity:1;transform:scale(.2)}to{opacity:0;transform:scale(1.6)}}
+.lk-panel.shake{animation:lkShake .5s}
+@keyframes lkShake{15%{transform:translateX(-10px)}30%{transform:translateX(9px)}45%{transform:translateX(-7px)}60%{transform:translateX(5px)}75%{transform:translateX(-2px)}}
+.lk-panel.bad{border-color:rgba(255,80,120,.55);box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 60px -6px rgba(255,60,110,.35)}
+.lk-panel.bad .lk-slot{border-color:rgba(255,80,120,.6)}
+.lk-panel.bad .lk-msg{color:#ff6b8a}
+.lk-panel.ok{border-color:rgba(0,255,153,.6);box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 70px -4px rgba(0,255,153,.45);transform:scale(1.03)}
+.lk-panel.ok .lk-status{color:#00ff99}.lk-panel.ok .lk-status i{background:#00ff99;box-shadow:0 0 12px #00ff99;animation:none}
+.lk-panel.ok .lk-slot{border-color:rgba(0,255,153,.7)}.lk-panel.ok .lk-slot b{background:#00ff99;box-shadow:0 0 14px #00ff99}
+.lk-panel.ok .lk-msg{color:#00ff99}
+.lk-ad{position:relative;width:min(340px,100%);text-align:center;padding:14px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.07);background:rgba(8,10,26,.55);font-size:13px;line-height:1.5;color:rgba(190,215,240,.7)}
+.lk-ad b{display:block;font:700 14px 'Space Grotesk',sans-serif;color:#fff;margin-bottom:3px;letter-spacing:.02em}
+.lk-ad a{color:#10d8ff;text-decoration:none;font-weight:500;border-bottom:1px solid rgba(16,216,255,.35)}
+.lock .wfd-footer{position:relative;z-index:1;margin:0;width:100%}
+.lock.out{animation:lkOut .75s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes lkOut{0%{opacity:1;filter:none;transform:none}100%{opacity:0;filter:blur(18px) brightness(1.6);transform:scale(1.06)}}
+.demobar{display:none;margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px))) 18px;padding:10px 16px;background:linear-gradient(90deg,#04050f,#0b1230);color:#cfe9ff;font:500 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.12em;text-align:center;border-bottom:1px solid rgba(16,216,255,.25)}
+.demobar b{color:#00ff99}
+html.demo .demobar{display:block}
+@media (prefers-reduced-motion:reduce){.lock .aurora,.lk-panel::before,.lk-status i,.lk-slot.cur{animation:none}.lock.out{animation:none;opacity:0}}
+@media (max-height:700px){.lk-main{padding-top:22px}.lk-pad button{height:52px}}
+</style><script>try{var q=new URLSearchParams(location.search).get("r");if(!q&&sessionStorage.getItem("wfd_ok")!=="1")document.documentElement.classList.add("locked")}catch(e){document.documentElement.classList.add("locked")}</script>
+</head><body>
+<div class="lock" id="lock" role="dialog" aria-modal="true" aria-label="Whetū Digital secure access">
+  <div class="aurora"></div><canvas id="stars" aria-hidden="true"></canvas><div class="vig"></div>
+  <div class="lk-main">
+    <div class="lk-brand"><div class="wfd-logo">WHETŪ DIGITAL</div><div class="tag">Digital Tools for Modern Living</div></div>
+    <div class="lk-panel" id="lkPanel">
+      <div class="lk-status"><i></i><span id="lkState">LOCKED</span></div>
+      <h1 class="lk-title">Secure access</h1>
+      <p class="lk-sub" id="lkSub">Enter your 4-digit PIN to continue</p>
+      <div class="lk-slots" id="lkSlots" aria-hidden="true"><div class="lk-slot"><b></b></div><div class="lk-slot"><b></b></div><div class="lk-slot"><b></b></div><div class="lk-slot"><b></b></div></div>
+      <div class="lk-msg" id="lkMsg" role="status" aria-live="polite"></div>
+      <div class="lk-pad" id="lkPad">
+        <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
+        <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
+        <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
+        <button type="button" data-k="clr" class="fn" aria-label="Clear">CLEAR</button><button type="button" data-k="0">0</button><button type="button" data-k="del" class="fn" aria-label="Delete">DEL</button>
+      </div>
+    </div>
+    <div class="lk-ad"><b>Aotearoa's landlord toolkit</b>Tenant reference checks, rent tracking and property dashboards, built in New Zealand. Private by design. <a href="mailto:hello@whetudigital.co.nz?subject=Access%20request">Request access</a></div>
+  </div>
+  <div class="wfd-footer">
+    <div class="wfd-logo">WHETŪ DIGITAL</div>
+    <div class="wfd-tagline">Digital Tools for Modern Living — Aotearoa New Zealand</div>
+    <div class="wfd-copy">© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
+    <div class="wfd-dedrow"><span class="wfd-ded">Built with care for Aotearoa</span> <span class="wfd-heart">♥</span></div>
+    <span class="wfd-badge">Licensed Dashboard — Whetū Digital 2026</span>
+  </div>
+</div>
+<div class="demobar" id="demobar"><b>DEMO</b> &nbsp;Whetū Digital reference check · nothing you enter is saved or sent</div>
+
 <div class="wrap">
 <header>
   <div class="brand"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M5 31 32 8l27 23"/><path d="M12 29v26h40V29"/><path d="M24 55V36h16v19"/></svg>
@@ -134,7 +235,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px 
   <div class="wfd-logo">WHETŪ DIGITAL</div>
   <div class="wfd-tagline">Digital Tools for Modern Living — Aotearoa New Zealand</div>
   <div class="wfd-copy">© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
-  <span class="wfd-ded">Built with care for STL Rentals NZ <span class="wfd-heart">♥</span></span>
+  <div class="wfd-dedrow"><span class="wfd-ded">Built with care for STL Rentals NZ</span> <span class="wfd-heart">♥</span></div>
   <span class="wfd-badge">Licensed Dashboard — Whetū Digital 2026</span>
 </div>
 <script>
@@ -160,7 +261,7 @@ const Q=[
 const $=s=>document.querySelector(s);
 const EXEC="https://script.google.com/macros/s/AKfycbyEKPMYvmkjDg6nOye2PZWwig6zjSIlURd43FE3dum3-ottLiCCxQpGuvgIzmLNjYtu/exec";
 const RID=(new URLSearchParams(location.search).get("r")||"").replace(/[^A-Za-z0-9]/g,"").slice(0,20);
-let APP="",ADDR="";
+let APP="",ADDR="",DEMO=false;
 const STARTED=Date.now(),SID=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2);
 const qs=$("#qs");
 Q.forEach((q,i)=>{
@@ -216,6 +317,7 @@ function showDone(sent,text){
   if(sent){try{localStorage.removeItem(DK)}catch(e){}}
 }
 function send(payload,tries){
+  if(DEMO){setTimeout(()=>showDone(true,payload.summary),700);return}
   const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),20000);
   fetch(EXEC,{method:"POST",credentials:"omit",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),signal:ctl.signal})
     .then(r=>r.json()).then(r=>{clearTimeout(to);r&&r.ok?showDone(true,payload.summary):fail()}).catch(()=>{clearTimeout(to);fail()});
@@ -223,7 +325,7 @@ function send(payload,tries){
 }
 /* Fill in the applicant and address for this request (only the id is in the link) */
 (function lookup(){
-  if(!RID){$("#badlink").hidden=false;return}
+  if(!RID){return}
   fetch(EXEC+"?mode=request&r="+encodeURIComponent(RID),{method:"GET",credentials:"omit",redirect:"follow"}).then(r=>r.json()).then(r=>{
     if(!r||!r.ok){$("#badlink").hidden=false;return}
     APP=r.applicant||"";ADDR=r.address||"";
@@ -245,4 +347,69 @@ $("#copy").addEventListener("click",async()=>{
   catch(e){const r=document.createRange();r.selectNodeContents($("#sum"));const s=getSelection();s.removeAllRanges();s.addRange(r);$("#cst").textContent="Select and copy the text above."}
 });
 loadDraft();refresh();
+/* ---------- Whetu PIN gate (a curtain, not a vault: the hash is in the page; real data is protected by the request code) ---------- */
+const PIN_HASH="8b6d32eed7d4307de3eb7f214b6f7f5ad38c6bde8c04089d806af3128cdb420b";
+function enterDemo(){
+  DEMO=true;document.documentElement.classList.add("demo");
+  APP="Jordan Sample";ADDR="12 Example Street";
+  $("#greet").textContent="Hi Alex, ";$("#ap").textContent=APP;$("#ad").textContent=ADDR;$("#about").hidden=false;
+}
+(function gate(){
+  const lock=$("#lock");
+  try{if(sessionStorage.getItem("wfd_ok")==="1"&&!RID){enterDemo()}}catch(e){}
+  if(RID||!document.documentElement.classList.contains("locked"))return;
+  const panel=$("#lkPanel"),slots=[...document.querySelectorAll(".lk-slot")],msg=$("#lkMsg"),state=$("#lkState"),sub=$("#lkSub");
+  let pin="",busy=false,fails=0,until=Number((function(){try{return sessionStorage.getItem("wfd_lk")||0}catch(e){return 0}})());
+  const MAXTRY=5,LOCKSEC=30;
+  function paint(){slots.forEach((s,i)=>{s.classList.toggle("on",i<pin.length);s.classList.toggle("cur",i===pin.length&&!busy)})}
+  function buzz(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+  async function sha(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+  function tick(){const left=Math.ceil((until-Date.now())/1000);
+    if(left>0){state.textContent="LOCKED OUT";msg.textContent="Try again in "+left+"s";panel.classList.add("bad");setTimeout(tick,500);return true}
+    if(until){until=0;fails=0;try{sessionStorage.removeItem("wfd_lk")}catch(e){}panel.classList.remove("bad");state.textContent="LOCKED";msg.textContent=""}return false}
+  async function submit(){
+    busy=true;paint();
+    let ok=false;try{ok=(await sha("whetu-ref-gate-v1:"+pin))===PIN_HASH}catch(e){ok=false}
+    if(ok){
+      panel.classList.add("ok");state.textContent="ACTIVE";msg.textContent="Access granted";sub.textContent="Welcome to Whetū Digital";buzz(30);
+      try{sessionStorage.setItem("wfd_ok","1")}catch(e){}
+      setTimeout(()=>{lock.classList.add("out");setTimeout(()=>{document.documentElement.classList.remove("locked");lock.style.display="none";enterDemo();window.scrollTo(0,0);stopStars()},720)},650);
+      return;
+    }
+    fails++;buzz([60,40,60]);panel.classList.remove("shake");void panel.offsetWidth;panel.classList.add("shake","bad");
+    if(fails>=MAXTRY){until=Date.now()+LOCKSEC*1000;try{sessionStorage.setItem("wfd_lk",String(until))}catch(e){}pin="";busy=false;paint();tick();return}
+    msg.textContent="Access denied · "+(MAXTRY-fails)+" left";
+    setTimeout(()=>{pin="";busy=false;panel.classList.remove("bad","shake");msg.textContent="";paint()},650);
+  }
+  function press(k){
+    if(busy||tick())return;
+    if(k==="del")pin=pin.slice(0,-1);else if(k==="clr")pin="";else if(/^\d$/.test(k)&&pin.length<4)pin+=k;
+    paint();if(pin.length===4)submit();
+  }
+  $("#lkPad").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;b.classList.remove("hit");void b.offsetWidth;b.classList.add("hit");buzz(8);press(b.dataset.k)});
+  document.addEventListener("keydown",e=>{if(!document.documentElement.classList.contains("locked"))return;
+    if(/^\d$/.test(e.key))press(e.key);else if(e.key==="Backspace")press("del");else if(e.key==="Escape")press("clr")});
+  paint();tick();
+
+  /* constellation starfield */
+  const cv=$("#stars"),cx=cv.getContext("2d");let W=0,Hh=0,stars=[],raf=0,mx=0,my=0,run=true;
+  const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function size(){const d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;Hh=cv.clientHeight;cv.width=W*d;cv.height=Hh*d;cx.setTransform(d,0,0,d,0,0);
+    const n=Math.round(Math.min(110,Math.max(46,W*Hh/14000)));stars=[];
+    for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*Hh,z:Math.random()*.9+.1,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,t:Math.random()*6.28,c:Math.random()<.5?"16,216,255":(Math.random()<.5?"192,64,255":"210,230,255")})}
+  function frame(){
+    if(!run)return;cx.clearRect(0,0,W,Hh);
+    for(const s of stars){if(!reduce){s.x+=s.vx*s.z;s.y+=s.vy*s.z;s.t+=.02;if(s.x<-10)s.x=W+10;if(s.x>W+10)s.x=-10;if(s.y<-10)s.y=Hh+10;if(s.y>Hh+10)s.y=-10}
+      const px=s.x+mx*s.z*14,py=s.y+my*s.z*14,a=.35+.4*Math.sin(s.t)*s.z+.2;s.px=px;s.py=py;
+      cx.beginPath();cx.arc(px,py,s.z*1.5+.3,0,6.283);cx.fillStyle="rgba("+s.c+","+Math.min(1,a)+")";cx.fill()}
+    const L=110;cx.lineWidth=.6;
+    for(let i=0;i<stars.length;i++)for(let j=i+1;j<stars.length;j++){const a=stars[i],b=stars[j],dx=a.px-b.px,dy=a.py-b.py,d=dx*dx+dy*dy;
+      if(d<L*L){cx.strokeStyle="rgba(16,216,255,"+(.16*(1-Math.sqrt(d)/L))+")";cx.beginPath();cx.moveTo(a.px,a.py);cx.lineTo(b.px,b.py);cx.stroke()}}
+    raf=reduce?0:requestAnimationFrame(frame)}
+  window.stopStars=function(){run=false;cancelAnimationFrame(raf)};
+  size();frame();addEventListener("resize",()=>{size();if(reduce)frame()});
+  addEventListener("pointermove",e=>{mx=(e.clientX/W-.5)*2;my=(e.clientY/Hh-.5)*2},{passive:true});
+  document.addEventListener("visibilitychange",()=>{if(document.hidden){cancelAnimationFrame(raf)}else if(run&&!reduce){frame()}});
+})();
+
 </script></body></html>
