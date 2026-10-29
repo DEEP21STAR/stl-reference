@@ -105,6 +105,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px 
 .promo b{font-family:var(--display)}.promo a{color:var(--ink);font-weight:600}
 @media (prefers-reduced-motion:reduce){.wfd-logo,.wfd-ded,.wfd-heart{animation:none}}
 
+
 /* ---------- Whetu PIN gate ---------- */
 html.locked,html.locked body{overflow:hidden;background:#05050e}
 html.locked .wrap,html.locked > body > .wfd-footer{display:none}
@@ -172,6 +173,70 @@ html.locked .lock{display:flex}
 html.demo .demobar{display:block}
 @media (prefers-reduced-motion:reduce){.lock .aurora,.lk-panel::before,.lk-status i,.lk-slot.cur{animation:none}.lock.out{animation:none;opacity:0}}
 @media (max-height:700px){.lk-main{padding-top:22px}.lk-pad button{height:52px}}
+
+/* Footer life: pendulum sway + twinkling stars + shooting star (transform/opacity only) */
+.wfd-footer{position:relative;overflow:hidden;isolation:isolate}
+.wfd-footer>*{position:relative;z-index:2}
+.wfd-footer::before,.wfd-footer::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-repeat:no-repeat}
+.wfd-footer::before{background-image:
+ radial-gradient(1.6px 1.6px at 8% 24%,#fff,transparent 70%),radial-gradient(1.2px 1.2px at 19% 70%,#9ee9ff,transparent 70%),
+ radial-gradient(1.8px 1.8px at 31% 18%,#e7b6ff,transparent 70%),radial-gradient(1.2px 1.2px at 44% 78%,#fff,transparent 70%),
+ radial-gradient(1.6px 1.6px at 58% 14%,#9ee9ff,transparent 70%),radial-gradient(1.2px 1.2px at 71% 66%,#fff,transparent 70%),
+ radial-gradient(1.8px 1.8px at 83% 22%,#e7b6ff,transparent 70%),radial-gradient(1.4px 1.4px at 93% 74%,#fff,transparent 70%);
+ animation:wfdTw 3.4s ease-in-out infinite}
+.wfd-footer::after{background-image:
+ radial-gradient(1.2px 1.2px at 14% 48%,#fff,transparent 70%),radial-gradient(1.6px 1.6px at 26% 86%,#e7b6ff,transparent 70%),
+ radial-gradient(1.2px 1.2px at 38% 40%,#9ee9ff,transparent 70%),radial-gradient(1.6px 1.6px at 52% 52%,#fff,transparent 70%),
+ radial-gradient(1.2px 1.2px at 66% 30%,#e7b6ff,transparent 70%),radial-gradient(1.6px 1.6px at 78% 84%,#9ee9ff,transparent 70%),
+ radial-gradient(1.2px 1.2px at 88% 46%,#fff,transparent 70%),radial-gradient(1.4px 1.4px at 4% 82%,#9ee9ff,transparent 70%);
+ animation:wfdTw 4.6s ease-in-out -1.7s infinite}
+@keyframes wfdTw{0%,100%{opacity:.25}50%{opacity:1}}
+.wfd-shoot{position:absolute;z-index:1;top:14%;left:-30%;width:90px;height:1.5px;border-radius:2px;opacity:0;pointer-events:none;
+ background:linear-gradient(90deg,transparent,rgba(158,233,255,.95),#fff);transform:rotate(18deg);filter:drop-shadow(0 0 6px rgba(158,233,255,.9));animation:wfdShoot 9s ease-in infinite 2.5s}
+@keyframes wfdShoot{0%{opacity:0;transform:translate3d(0,0,0) rotate(18deg)}3%{opacity:1}14%{opacity:0;transform:translate3d(150vw,48px,0) rotate(18deg)}100%{opacity:0;transform:translate3d(150vw,48px,0) rotate(18deg)}}
+.wfd-footer .wfd-logo{transform-origin:50% -10px;will-change:transform;animation:wfdGlow 2s ease-in-out infinite alternate,wfdAurora 4s ease-in-out infinite,wfdSway 6.5s ease-in-out infinite}
+@keyframes wfdSway{0%,100%{transform:translateX(-9px) rotate(-2.4deg) scale(.985)}50%{transform:translateX(9px) rotate(2.4deg) scale(1.035)}}
+@media (prefers-reduced-motion:reduce){.wfd-footer::before,.wfd-footer::after,.wfd-shoot,.wfd-footer .wfd-logo{animation:none}.wfd-shoot{display:none}.wfd-footer::before,.wfd-footer::after{opacity:.6}}
+
+/* ---------- Request-access modal ---------- */
+#reqDlg{border:0;padding:0;background:transparent;color:#e8f4ff;width:min(420px,calc(100vw - 28px));max-height:calc(100dvh - 28px);overflow:visible;font-family:'Space Grotesk',system-ui,sans-serif}
+#reqDlg::backdrop{background:rgba(3,4,12,.74);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#reqDlg[open]{animation:rqIn .38s cubic-bezier(.2,.9,.3,1.08)}
+@keyframes rqIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.rq-card{position:relative;max-height:calc(100dvh - 28px);overflow-y:auto;padding:22px 20px 18px;border-radius:22px;
+  background:linear-gradient(160deg,rgba(14,20,44,.94),rgba(8,10,26,.94));border:1px solid rgba(16,216,255,.22);
+  box-shadow:0 0 0 1px rgba(192,64,255,.1) inset,0 30px 80px -20px rgba(0,0,0,.8),0 0 60px -10px rgba(16,216,255,.2)}
+.rq-card .lk-status{margin-bottom:10px}
+.rq-card .lk-title{margin-bottom:4px}.rq-card .lk-sub{margin-bottom:14px}
+.rq-x{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:10px;border:1px solid rgba(120,170,255,.15);background:rgba(20,28,56,.6);color:#bcd;font:400 20px/1 'Space Grotesk',sans-serif;cursor:pointer}
+.rq-x:hover{border-color:rgba(16,216,255,.5);color:#fff}
+.rq-f{display:block;margin:0 0 11px}
+.rq-f>span,.rq-role legend{display:block;font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:rgba(160,200,230,.65);margin:0 0 6px;padding:0}
+.rq-f input,.rq-f textarea{width:100%;padding:12px 13px;border-radius:12px;border:1px solid rgba(16,216,255,.25);background:rgba(4,6,18,.7);color:#eaf6ff;font:400 16px 'Space Grotesk',system-ui,sans-serif;transition:border-color .2s,box-shadow .2s}
+.rq-f textarea{resize:vertical;min-height:74px}
+.rq-f input:focus,.rq-f textarea:focus{outline:none;border-color:rgba(16,216,255,.75);box-shadow:0 0 0 3px rgba(16,216,255,.15)}
+.rq-f.bad input,.rq-f.bad textarea{border-color:rgba(255,80,120,.7)}
+.rq-role{border:0;padding:0;margin:0 0 12px;background:transparent;border-radius:0;min-width:0}
+.rq-role legend{float:none;width:auto;display:block;grid-template-columns:none}
+.rq-role div{display:flex;flex-wrap:wrap;gap:8px}
+.rq-role label{position:relative;cursor:pointer}
+.rq-role input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.rq-role span{display:block;padding:9px 13px;border-radius:999px;border:1px solid rgba(120,170,255,.2);background:rgba(10,14,34,.7);font:500 13px 'Space Grotesk',sans-serif;color:#cfe3f5;transition:all .18s}
+.rq-role input:checked+span{border-color:rgba(16,216,255,.8);background:linear-gradient(135deg,rgba(16,216,255,.2),rgba(192,64,255,.2));color:#fff;box-shadow:0 0 16px -4px rgba(16,216,255,.6)}
+.rq-role input:focus-visible+span{outline:2px solid #10d8ff;outline-offset:2px}
+.rq-err{min-height:18px;margin:2px 0 8px;font:500 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.06em;color:#ff6b8a}
+.rq-go,.rq-alt{width:100%;height:50px;border-radius:14px;font:700 16px 'Space Grotesk',sans-serif;letter-spacing:.02em;cursor:pointer;border:1px solid rgba(16,216,255,.5);color:#04050f;background:linear-gradient(135deg,#10d8ff,#c040ff);box-shadow:0 10px 30px -10px rgba(16,216,255,.6);transition:transform .1s,filter .2s}
+.rq-go:hover{filter:brightness(1.1)}.rq-go:active{transform:scale(.98)}
+.rq-go[disabled]{opacity:.6;cursor:default}
+.rq-go.busy::after{content:"";display:inline-block;width:14px;height:14px;margin-left:10px;vertical-align:-2px;border-radius:50%;border:2px solid rgba(4,5,15,.35);border-top-color:#04050f;animation:rqSpin .7s linear infinite}
+@keyframes rqSpin{to{transform:rotate(360deg)}}
+.rq-alt{background:rgba(16,24,52,.8);color:#e8f4ff;border-color:rgba(16,216,255,.35);box-shadow:none}
+.rq-priv{margin:12px 0 0;font-size:11.5px;line-height:1.5;color:rgba(160,190,220,.55)}
+.rq-done{text-align:center;padding:28px 22px 24px}
+.rq-tick{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;font-size:30px;color:#00ff99;border:1px solid rgba(0,255,153,.5);box-shadow:0 0 40px -4px rgba(0,255,153,.55);animation:rqPop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes rqPop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+.rq-done p{color:rgba(190,215,240,.75);font-size:14px;line-height:1.55;margin:6px 0 16px}
+@media (prefers-reduced-motion:reduce){#reqDlg[open],.rq-tick,.rq-go.busy::after{animation:none}}
 </style><script>try{var q=new URLSearchParams(location.search).get("r");if(!q&&sessionStorage.getItem("wfd_ok")!=="1")document.documentElement.classList.add("locked")}catch(e){document.documentElement.classList.add("locked")}</script>
 </head><body>
 <div class="lock" id="lock" role="dialog" aria-modal="true" aria-label="Whetū Digital secure access">
@@ -191,9 +256,40 @@ html.demo .demobar{display:block}
         <button type="button" data-k="clr" class="fn" aria-label="Clear">CLEAR</button><button type="button" data-k="0">0</button><button type="button" data-k="del" class="fn" aria-label="Delete">DEL</button>
       </div>
     </div>
-    <div class="lk-ad"><b>Aotearoa's landlord toolkit</b>Tenant reference checks, rent tracking and property dashboards, built in New Zealand. Private by design. <a href="mailto:hello@whetudigital.co.nz?subject=Access%20request">Request access</a></div>
+    <div class="lk-ad"><b>Aotearoa's Landlord Toolkit</b>Tenant reference checks, rent tracking and property dashboards, built in New Zealand. Private by design. <a href="mailto:hello@whetudigital.co.nz?subject=Access%20request" id="reqLink">Request access</a></div>
   </div>
-  <div class="wfd-footer">
+
+  <dialog id="reqDlg" aria-labelledby="rqTitle">
+    <form class="rq-card" id="rqForm" method="dialog" novalidate>
+      <button type="button" class="rq-x" id="rqClose" aria-label="Close">&times;</button>
+      <div class="lk-status"><i></i><span>REQUEST ACCESS</span></div>
+      <h2 class="lk-title" id="rqTitle">Request access</h2>
+      <p class="lk-sub">Tell us a little about you and we will reply personally.</p>
+      <label class="rq-f" id="rqFn"><span>Your name</span><input id="rqName" name="name" autocomplete="name" enterkeyhint="next" maxlength="80"></label>
+      <label class="rq-f" id="rqFe"><span>Email</span><input id="rqEmail" name="email" type="email" inputmode="email" autocomplete="email" enterkeyhint="next" maxlength="254"></label>
+      <fieldset class="rq-role"><legend>I am a</legend><div>
+        <label><input type="radio" name="role" value="landlord" checked><span>Landlord</span></label>
+        <label><input type="radio" name="role" value="property_manager"><span>Property manager</span></label>
+        <label><input type="radio" name="role" value="other"><span>Something else</span></label></div></fieldset>
+      <label class="rq-f"><span>Message (optional)</span><textarea id="rqMsg" name="message" rows="3" maxlength="1000" enterkeyhint="send"></textarea></label>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input type="text" id="rqWeb" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="rq-err" id="rqErr" role="alert" aria-live="polite"></p>
+      <button class="rq-go" id="rqGo" type="submit">Send request</button>
+      <p class="rq-priv">We collect your name and email only to reply to this request. They are stored in Whetū Digital's Google account (servers may be outside New Zealand) and deleted after 12 months. You can ask to see or correct them any time (Privacy Act 2020).</p>
+    </form>
+    <div class="rq-card rq-done" id="rqDone" hidden>
+      <div class="rq-tick">&#10003;</div><h2 class="lk-title">Request received</h2>
+      <p id="rqDoneMsg">Thank you. We will be in touch soon.</p>
+      <button type="button" class="rq-alt" id="rqDoneClose">Back to the lock screen</button>
+    </div>
+    <div class="rq-card rq-done" id="rqFail" hidden>
+      <h2 class="lk-title">That did not go through</h2>
+      <p id="rqFailMsg">Nothing was lost. You can email us instead and we will reply the same way.</p>
+      <a class="rq-alt" id="rqMail" style="display:grid;place-items:center;text-decoration:none">Email us instead</a>
+      <button type="button" class="rq-alt" id="rqTry" style="margin-top:10px">Try again</button>
+    </div>
+  </dialog>
+  <div class="wfd-footer"><i class="wfd-shoot" aria-hidden="true"></i>
     <div class="wfd-logo">WHETŪ DIGITAL</div>
     <div class="wfd-tagline">Digital Tools for Modern Living — Aotearoa New Zealand</div>
     <div class="wfd-copy">© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
@@ -231,7 +327,7 @@ html.demo .demobar{display:block}
   © 2026 Whetū Digital Ltd. All rights reserved.
   Contact: hello@whetudigital.co.nz
 -->
-<div class="wfd-footer">
+<div class="wfd-footer"><i class="wfd-shoot" aria-hidden="true"></i>
   <div class="wfd-logo">WHETŪ DIGITAL</div>
   <div class="wfd-tagline">Digital Tools for Modern Living — Aotearoa New Zealand</div>
   <div class="wfd-copy">© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
@@ -347,6 +443,44 @@ $("#copy").addEventListener("click",async()=>{
   catch(e){const r=document.createRange();r.selectNodeContents($("#sum"));const s=getSelection();s.removeAllRanges();s.addRange(r);$("#cst").textContent="Select and copy the text above."}
 });
 loadDraft();refresh();
+/* ---------- Request access (lock screen) ---------- */
+(function access(){
+  const link=$("#reqLink"),dlg=$("#reqDlg");if(!link||!dlg||typeof dlg.showModal!=="function")return;
+  const form=$("#rqForm"),done=$("#rqDone"),fail=$("#rqFail"),err=$("#rqErr"),go=$("#rqGo");let opened=0,busy=false;
+  function show(which){form.hidden=which!=="form";done.hidden=which!=="done";fail.hidden=which!=="fail"}
+  function open(e){e&&e.preventDefault();show("form");err.textContent="";["rqFn","rqFe"].forEach(i=>$("#"+i).classList.remove("bad"));opened=Date.now();dlg.showModal();setTimeout(()=>$("#rqName").focus(),60)}
+  link.addEventListener("click",open);
+  function close(){if(dlg.open)dlg.close()}
+  dlg.addEventListener("close",()=>{link.focus&&link.focus()});
+  $("#rqClose").addEventListener("click",close);$("#rqDoneClose").addEventListener("click",close);
+  dlg.addEventListener("click",e=>{if(e.target===dlg)close()});
+  $("#rqTry").addEventListener("click",()=>show("form"));
+  function val(){
+    const n=$("#rqName").value.trim(),m=$("#rqEmail").value.trim(),msg=$("#rqMsg").value.trim();
+    $("#rqFn").classList.remove("bad");$("#rqFe").classList.remove("bad");
+    if(!n||n.length>80){$("#rqFn").classList.add("bad");err.textContent="Please tell us your name.";$("#rqName").focus();return null}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)||m.length>254){$("#rqFe").classList.add("bad");err.textContent="That email does not look right.";$("#rqEmail").focus();return null}
+    err.textContent="";
+    return {type:"access",name:n,email:m,role:(form.querySelector('input[name="role"]:checked')||{value:"landlord"}).value,message:msg,website:$("#rqWeb").value,elapsedMs:Date.now()-opened};
+  }
+  function mailto(p){const body="Name: "+p.name+"\nI am a: "+p.role.replace("_"," ")+"\n\n"+(p.message||"");
+    return "mailto:hello@whetudigital.co.nz?subject="+encodeURIComponent("Access request")+"&body="+encodeURIComponent(body)}
+  form.addEventListener("submit",async e=>{
+    e.preventDefault();if(busy)return;const p=val();if(!p)return;
+    busy=true;go.disabled=true;go.classList.add("busy");err.textContent="";
+    const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),10000);
+    try{
+      const r=await fetch(EXEC,{method:"POST",credentials:"omit",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(p),signal:ctl.signal}).then(x=>x.json());
+      clearTimeout(to);
+      if(r&&r.ok){$("#rqDoneMsg").textContent="Thank you, "+p.name.split(" ")[0]+". We will reply to "+p.email+" soon.";show("done");form.reset()}
+      else if(r&&r.error==="rate"){err.textContent="We already have a request from you. We will be in touch."}
+      else if(r&&r.error==="invalid"){err.textContent="Please check your details and try again."}
+      else throw new Error("bad");
+    }catch(x){clearTimeout(to);$("#rqMail").href=mailto(p);show("fail")}
+    busy=false;go.disabled=false;go.classList.remove("busy");
+  });
+})();
+
 /* ---------- Whetu PIN gate (a curtain, not a vault: the hash is in the page; real data is protected by the request code) ---------- */
 const PIN_HASH="8b6d32eed7d4307de3eb7f214b6f7f5ad38c6bde8c04089d806af3128cdb420b";
 function enterDemo(){
@@ -402,7 +536,7 @@ function enterDemo(){
     paint();if(pin.length===4)submit();
   }
   $("#lkPad").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;b.classList.remove("hit");void b.offsetWidth;b.classList.add("hit");buzz(8);press(b.dataset.k)});
-  document.addEventListener("keydown",e=>{if(!document.documentElement.classList.contains("locked"))return;
+  document.addEventListener("keydown",e=>{if(!document.documentElement.classList.contains("locked"))return;if(document.querySelector("dialog[open]")||/^(INPUT|TEXTAREA|SELECT)$/.test((e.target&&e.target.tagName)||""))return;
     if(/^\d$/.test(e.key))press(e.key);else if(e.key==="Backspace")press("del");else if(e.key==="Escape")press("clr")});
   paint();tick();
 
