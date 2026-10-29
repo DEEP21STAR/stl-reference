@@ -1,0 +1,248 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tenant reference - STL Rentals NZ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm column that follows the STL Rentals NZ email signature (cream card, navy ink, gold rule). Numbered questions are a real sequence. */
+:root{
+  --bg:#F7F6F0; --surface:#FFFFFF; --ink:#1E2A3A; --muted:#6B7480; --line:#DAD6C6;
+  --gold:#C9A227; --accent:#1E2A3A; --accent-ink:#FFFFFF; --accent-soft:#F3ECD0; --err:#B42318;
+  --display:'Familjen Grotesk',system-ui,sans-serif; --body:'Public Sans',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121A26; --surface:#1A2433; --ink:#EDEBE2; --muted:#9BA5B1; --line:#2E3A4B;
+  --gold:#D9B23B; --accent:#D9B23B; --accent-ink:#1A1A12; --accent-soft:#2C2A1C; --err:#F2877D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A26; --surface:#1A2433; --ink:#EDEBE2; --muted:#9BA5B1; --line:#2E3A4B;
+  --gold:#D9B23B; --accent:#D9B23B; --accent-ink:#1A1A12; --accent-soft:#2C2A1C; --err:#F2877D; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);padding-block:0 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:720px;margin:0 auto}
+header{padding-block:40px 24px}
+.brand{display:flex;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.brand svg{width:58px;height:58px;flex:none;color:var(--ink)}
+.wm{font:700 clamp(26px,6vw,34px)/1 var(--display);letter-spacing:.01em;text-transform:uppercase}
+.wm b{color:var(--gold);font-weight:700}
+.tag{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+.me{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.me strong{font:700 18px var(--display);flex-basis:100%}
+.me span{font-size:15px;overflow-wrap:anywhere}
+.me span i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:8px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+h1{font:700 clamp(30px,6vw,42px)/1.1 var(--display);margin:12px 0 14px;text-wrap:balance}
+.lede{color:var(--muted);max-width:60ch;margin:0}
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:24px 0 8px}
+.about div{background:var(--surface);padding:14px 16px;min-width:0}
+.about dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.about dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.privacy{font-size:14px;color:var(--muted);margin:16px 0 0}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.track{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+fieldset{border:1px solid var(--line);background:var(--surface);border-radius:12px;margin:0 0 14px;padding:18px 18px 16px;min-width:0}
+fieldset.bad{border-color:var(--err)}
+legend{padding:0;float:left;width:100%;margin-bottom:12px;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+.qn{font:700 14px/1 var(--display);background:var(--accent-soft);color:var(--accent);border-radius:7px;height:26px;display:grid;place-items:center}
+.qt{font:600 17px/1.35 var(--display)}
+.qh{display:block;font:400 13px/1.4 var(--body);color:var(--muted);margin-top:2px}
+fieldset>*:not(legend){clear:both}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt span{display:block;padding:9px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:var(--bg)}
+.opt input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.more{margin-top:12px}
+label.lab{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:var(--muted)}
+input[type=text],input[type=number],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:84px;resize:vertical}
+input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row>*{min-width:0}
+.err{color:var(--err);font-size:13px;margin-top:8px;display:none}
+fieldset.bad .err{display:block}
+h2{font:700 20px/1.2 var(--display);margin:32px 0 12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button{font:600 16px var(--body);border-radius:9px;padding:13px 22px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button[disabled]{opacity:.6;cursor:default}
+.done{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:8px}
+.done h2{margin-top:0}
+.status{font-size:14px;color:var(--muted);margin:10px 0 0}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px;font:13px/1.5 ui-monospace,Menlo,monospace;max-height:320px;overflow:auto}
+[hidden]{display:none!important}
+@media (max-width:480px){.row{grid-template-columns:1fr}fieldset{padding:16px 14px}}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+
+/* Whetu Digital footer (brand standard) */
+.wfd-footer{background:linear-gradient(135deg,#04050f,#070c1e);border-top:1px solid rgba(16,216,255,.15);padding:22px 24px 20px;text-align:center;margin:40px calc(-1*max(16px,env(safe-area-inset-right,0px))) -64px calc(-1*max(16px,env(safe-area-inset-left,0px)))}
+.wfd-logo{font-size:22px;font-weight:900;letter-spacing:.2em;display:inline-block;
+  background:linear-gradient(90deg,#fff 0%,#10d8ff 25%,#c040ff 55%,#fff 80%,#10d8ff 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:wfdGlow 2s ease-in-out infinite alternate,wfdAurora 4s ease-in-out infinite;margin-bottom:6px}
+@keyframes wfdGlow{from{filter:drop-shadow(0 0 8px rgba(0,230,255,.4))}to{filter:drop-shadow(0 0 20px rgba(0,230,255,.8)) drop-shadow(0 0 40px rgba(192,64,255,.4))}}
+@keyframes wfdAurora{0%{background-position:100% 50%}50%{background-position:0% 50%}100%{background-position:100% 50%}}
+.wfd-tagline{font-size:12px;color:rgba(180,200,220,.5);letter-spacing:2px;margin:0 0 10px}
+.wfd-copy{font-size:11px;color:rgba(140,160,180,.4);letter-spacing:1px;margin-bottom:12px}
+.wfd-copy a{color:rgba(0,230,255,.4);text-decoration:none}
+.wfd-ded{font-size:14px;letter-spacing:2px;margin:0 0 10px;display:block;
+  background:linear-gradient(90deg,rgba(255,255,255,.7) 0%,#fff 40%,#ffb3c6 70%,rgba(255,255,255,.7) 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:wfdDedA 4s ease-in-out infinite,wfdDedG 3s ease-in-out infinite alternate}
+@keyframes wfdDedA{0%{background-position:100% 50%}50%{background-position:0% 50%}100%{background-position:100% 50%}}
+@keyframes wfdDedG{from{filter:drop-shadow(0 0 4px rgba(255,160,180,.3))}to{filter:drop-shadow(0 0 14px rgba(255,160,180,.9))}}
+.wfd-heart{-webkit-text-fill-color:#ff6b8a;color:#ff6b8a;display:inline-block;animation:wfdHB 1.4s ease-in-out infinite}
+@keyframes wfdHB{0%,100%{transform:scale(1)}14%{transform:scale(1.35)}28%{transform:scale(1)}42%{transform:scale(1.2)}56%{transform:scale(1)}}
+.wfd-badge{display:inline-block;padding:4px 14px;border-radius:20px;background:rgba(0,230,255,.06);border:1px solid rgba(0,230,255,.2);font-size:11px;color:rgba(140,160,180,.6);letter-spacing:1px}
+.promo{margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;background:var(--surface);font-size:15px}
+.promo b{font-family:var(--display)}.promo a{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:reduce){.wfd-logo,.wfd-ded,.wfd-heart{animation:none}}
+</style></head><body>
+<div class="wrap">
+<header>
+  <div class="brand"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M5 31 32 8l27 23"/><path d="M12 29v26h40V29"/><path d="M24 55V36h16v19"/></svg>
+  <div><div class="wm">STL Rentals <b>NZ</b></div><div class="tag">Property &bull; Rentals &bull; Management</div></div></div>
+  <div class="eyebrow">Tenant reference</div>
+  <h1>A few questions about a former tenant</h1>
+  <p class="lede"><span id="greet">Hi, </span>I'm Sandeep from STL Rentals NZ. An applicant for one of our rentals named you as a reference. Thank you for taking about five minutes. Your honest answers help us make a fair decision. No sign-in is needed, and you can submit straight from your phone.</p>
+  <div class="me"><strong>Sandeep Lal</strong><span><i></i>027 230 6521</span><span><i></i>stlrentalsnz@gmail.com</span></div>
+  <dl class="about" id="about" hidden><div><dt>Applicant</dt><dd id="ap"></dd></div><div><dt>Tenancy we are asking about</dt><dd id="ad"></dd></div></dl><p class="privacy" id="badlink" hidden>This link could not be matched to a request, but you can still answer and email your answers to Sandeep using the buttons at the end.</p>
+  <p class="privacy">The applicant has agreed to you being contacted. Your answers go to STL Rentals NZ only, and are used only to assess this tenancy application, under the Privacy Act 2020. The applicant can ask to see what was said about them. Please stick to facts you can stand behind, and skip anything you are unsure of.</p>
+</header>
+<div class="bar" id="bar"><div class="bar-row"><span id="count">0 of 15 answered</span><span id="qrange">Questions 1-15</span></div><div class="track"><div class="fill" id="fill"></div></div></div>
+<form id="f" novalidate><div id="qs"></div>
+  <h2>About you</h2>
+  <fieldset><div class="row"><div><label class="lab" for="rn">Your name</label><input type="text" id="rn" autocomplete="name"></div><div><label class="lab" for="rr">Your role</label><input type="text" id="rr" placeholder="e.g. owner, property manager"></div></div>
+  <div class="more"><label class="lab" for="rc">Phone or email, if I may follow up</label><input type="text" id="rc" autocomplete="off"></div>
+  <div class="more"><label class="lab" for="ex">Anything else you would like to add</label><textarea id="ex"></textarea></div></fieldset>
+  <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <div class="actions"><button type="submit" id="go">Submit my answers</button></div><p class="status" id="st" role="status"></p>
+</form>
+<section class="done" id="done" hidden><h2 id="doneTitle"></h2><p id="doneMsg"></p><pre id="sum"></pre>
+  <div class="actions"><a id="mail" hidden><button type="button">Email my answers</button></a><button type="button" class="ghost" id="copy">Copy my answers</button><button type="button" class="ghost" id="edit">Change an answer</button></div><p class="status" id="cst" role="status"></p>
+  <div class="promo" id="promo" hidden><b>Want tenant references this easy for your own rentals?</b><br>This page is a Whetū Digital tool for NZ landlords and property managers. <a href="https://whetudigital.co.nz/?utm_source=stl-reference&amp;utm_medium=thankyou" target="_blank" rel="noopener">See what we build</a></div></section>
+</div>
+<!--
+  © 2026 Whetū Digital Ltd. All rights reserved.
+  Contact: hello@whetudigital.co.nz
+-->
+<div class="wfd-footer">
+  <div class="wfd-logo">WHETŪ DIGITAL</div>
+  <div class="wfd-tagline">Digital Tools for Modern Living — Aotearoa New Zealand</div>
+  <div class="wfd-copy">© 2026 Whetū Digital Ltd. &nbsp;·&nbsp; <a href="mailto:hello@whetudigital.co.nz">hello@whetudigital.co.nz</a></div>
+  <span class="wfd-ded">Built with care for STL Rentals NZ <span class="wfd-heart">♥</span></span>
+  <span class="wfd-badge">Licensed Dashboard — Whetū Digital 2026</span>
+</div>
+<script>
+
+const Q=[
+ {id:"duration",t:"How long did the tenant live at the property?",type:"duration"},
+ {id:"tenancy_type",t:"What type of tenancy was it?",o:["Fixed term","Periodic","Fixed term, then periodic"],more:{label:"Anything to add about the tenancy",ph:"e.g. dates, who else was on the agreement"}},
+ {id:"rent_on_time",t:"Was rent paid on time, consistently?",o:["Always","Mostly","Often late","No"]},
+ {id:"arrears",t:"Were there any instances of arrears?",o:["No","Yes"],ifYes:"Yes",more:{label:"How often, and how were they resolved?",ph:"e.g. twice, caught up within a week"}},
+ {id:"proactive",t:"Did the tenant communicate proactively when payment issues arose?",o:["Yes","Sometimes","No","No issues arose"]},
+ {id:"condition",t:"How did the tenant maintain the property?",o:["Excellent","Good","Fair","Poor"],more:{label:"Comments, if any",ph:"e.g. inspection results, cleanliness, garden"}},
+ {id:"damage",t:"Was there any damage beyond normal wear and tear?",o:["No","Yes"],ifYes:"Yes",more:{label:"What was damaged, and what happened next?",ph:""}},
+ {id:"maintenance",t:"Did the tenant report maintenance issues properly?",o:["Yes, promptly","Mostly","Rarely","No"]},
+ {id:"complaints",t:"Were there any complaints from neighbours or other tenants?",o:["No","Yes"],ifYes:"Yes",more:{label:"What were they about, and how were they handled?",ph:""}},
+ {id:"agreement",t:"Did the tenant follow the terms of the tenancy agreement?",o:["Yes","Mostly","No"],more:{label:"Comments, if any",ph:"e.g. number of occupants, pets, subletting"}},
+ {id:"occupants",t:"Was anyone living at the property who was not named on the tenancy agreement?",o:["No","Yes"],ifYes:"Yes",more:{label:"Who, and for how long?",ph:""}},
+ {id:"inspections",t:"How did the property inspections go?",o:["Passed","Passed after follow-up","Failed or issues raised","None were done"],more:{label:"Comments, if any",ph:"e.g. cleanliness issues, follow-up inspections"}},
+ {id:"notice",t:"Did the tenant give proper notice before leaving?",o:["Yes","No","Still in the tenancy"]},
+ {id:"bond",t:"Was the full bond returned?",o:["Yes, in full","No, partly","No, none","Not applicable yet"],ifYes:["No, partly","No, none"],more:{label:"If not, why?",ph:""}},
+ {id:"again",t:"Would you rent to this tenant again?",o:["Yes","Yes, with reservations","No"],more:{label:"Comments, if any",ph:""}}
+];
+
+const $=s=>document.querySelector(s);
+const EXEC="https://script.google.com/macros/s/AKfycbyEKPMYvmkjDg6nOye2PZWwig6zjSIlURd43FE3dum3-ottLiCCxQpGuvgIzmLNjYtu/exec";
+const RID=(new URLSearchParams(location.search).get("r")||"").replace(/[^A-Za-z0-9]/g,"").slice(0,20);
+let APP="",ADDR="";
+const STARTED=Date.now(),SID=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2);
+const qs=$("#qs");
+Q.forEach((q,i)=>{
+  const fs=document.createElement("fieldset");fs.id="q_"+q.id;
+  let inner='<legend><span class="qn">'+(i+1)+'</span><span class="qt">'+q.t+'</span></legend>';
+  if(q.type==="duration"){
+    inner+='<div class="row"><div><label class="lab" for="d_y">Years</label><input type="number" id="d_y" min="0" max="80" inputmode="numeric"></div><div><label class="lab" for="d_m">Months</label><input type="number" id="d_m" min="0" max="11" inputmode="numeric"></div></div><div class="err">Enter the years or months, even if approximate.</div>';
+  } else {
+    inner+='<div class="opts">'+q.o.map(o=>'<label class="opt"><input type="radio" name="'+q.id+'" value="'+o+'"><span>'+o+'</span></label>').join("")+'</div>';
+    if(q.more)inner+='<div class="more" id="m_'+q.id+'" '+(q.ifYes?"hidden":"")+'><label class="lab" for="t_'+q.id+'">'+q.more.label+'</label><textarea id="t_'+q.id+'" placeholder="'+(q.more.ph||"")+'"></textarea></div>';
+    inner+='<div class="err">Please choose one.</div>';
+  }
+  fs.innerHTML=inner;qs.appendChild(fs);
+});
+function answered(q){if(q.type==="duration")return $("#d_y").value!==""||$("#d_m").value!=="";return !!document.querySelector('input[name="'+q.id+'"]:checked')}
+function val(q){const r=document.querySelector('input[name="'+q.id+'"]:checked');return r?r.value:""}
+function note(q){const t=$("#t_"+q.id);if(!t)return"";const m=$("#m_"+q.id);return(m&&m.hidden)?"":t.value.trim()}
+function refresh(){
+  let c=0;Q.forEach(q=>{if(answered(q)){c++;$("#q_"+q.id).classList.remove("bad")}
+    if(q.ifYes){const v=val(q);const show=Array.isArray(q.ifYes)?q.ifYes.includes(v):v===q.ifYes;$("#m_"+q.id).hidden=!show}});
+  $("#count").textContent=c+" of "+Q.length+" answered";$("#qrange").textContent="Questions 1-"+Q.length;$("#fill").style.width=(c/Q.length*100)+"%";
+}
+function build(){
+  const L=["TENANT REFERENCE for STL Rentals NZ","Applicant: "+(APP||"(not named)")+(ADDR?", tenancy at "+ADDR:""),""];
+  Q.forEach((q,i)=>{let a;
+    if(q.type==="duration")a=($("#d_y").value||0)+" year(s) "+($("#d_m").value||0)+" month(s)";
+    else{a=val(q);const t=note(q);if(t)a+=" - "+t}
+    L.push((i+1)+". "+q.t+"\n   "+a)});
+  L.push("","Completed by: "+($("#rn").value.trim()||"(not given)")+($("#rr").value.trim()?", "+$("#rr").value.trim():""));
+  if($("#rc").value.trim())L.push("Contact: "+$("#rc").value.trim());
+  if($("#ex").value.trim())L.push("Additional comments: "+$("#ex").value.trim());
+  return L.join("\n");
+}
+function collect(){
+  const o={rid:RID,submissionId:SID,website:($("#website")||{value:""}).value,startedAt:STARTED,answers:{},respondent:{name:$("#rn").value.trim(),role:$("#rr").value.trim(),contact:$("#rc").value.trim()},extra:$("#ex").value.trim(),summary:build()};
+  Q.forEach(q=>{o.answers[q.id]=q.type==="duration"?($("#d_y").value||0)+"y "+($("#d_m").value||0)+"m":(val(q)+(note(q)?" - "+note(q):""))});
+  return o;
+}
+/* Draft survives a refresh or a dropped connection */
+const DK="stl_ref_draft_"+(RID||"x");
+function saveDraft(){try{const d={};document.querySelectorAll("input,textarea").forEach(el=>{if(el.type==="radio"){if(el.checked)d["r_"+el.name]=el.value}else if(el.id)d[el.id]=el.value});localStorage.setItem(DK,JSON.stringify(d))}catch(e){}}
+function loadDraft(){try{const d=JSON.parse(localStorage.getItem(DK)||"null");if(!d)return;
+  for(const k in d){if(k.startsWith("r_")){const r=document.querySelector('input[name="'+k.slice(2)+'"][value="'+d[k].replace(/"/g,'\\"')+'"]');if(r)r.checked=true}else{const el=document.getElementById(k);if(el)el.value=d[k]}}}catch(e){}}
+document.addEventListener("input",()=>{refresh();saveDraft()});
+const MAIL="stlrentalsnz@gmail.com";
+function showDone(sent,text){
+  $("#sum").textContent=text;
+  $("#doneTitle").textContent=sent?"Thank you, your reference has been sent":"We could not send it automatically";
+  $("#doneMsg").textContent=sent?"Sandeep has received your answers. A copy is below for your records. You can close this page.":"Nothing is lost. Please tap Email my answers (or copy them and text 027 230 6521). It takes a few seconds.";
+  $("#mail").hidden=sent;$("#promo").hidden=!sent;$("#mail").href="mailto:"+MAIL+"?subject="+encodeURIComponent("Tenant reference"+(APP?" for "+APP:""))+"&body="+encodeURIComponent(text);
+  $("#edit").hidden=sent;
+  $("#f").hidden=true;$("#bar").hidden=true;$("#done").hidden=false;window.scrollTo({top:0});
+  if(sent){try{localStorage.removeItem(DK)}catch(e){}}
+}
+function send(payload,tries){
+  const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),20000);
+  fetch(EXEC,{method:"POST",credentials:"omit",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),signal:ctl.signal})
+    .then(r=>r.json()).then(r=>{clearTimeout(to);r&&r.ok?showDone(true,payload.summary):fail()}).catch(()=>{clearTimeout(to);fail()});
+  function fail(){if(tries<1){$("#st").textContent="Retrying...";setTimeout(()=>send(payload,tries+1),2500)}else showDone(false,payload.summary)}
+}
+/* Fill in the applicant and address for this request (only the id is in the link) */
+(function lookup(){
+  if(!RID){$("#badlink").hidden=false;return}
+  fetch(EXEC+"?mode=request&r="+encodeURIComponent(RID),{method:"GET",credentials:"omit",redirect:"follow"}).then(r=>r.json()).then(r=>{
+    if(!r||!r.ok){$("#badlink").hidden=false;return}
+    APP=r.applicant||"";ADDR=r.address||"";
+    if(r.first)$("#greet").textContent="Hi "+r.first+", ";
+    $("#ap").textContent=APP;$("#ad").textContent=ADDR;$("#about").hidden=false;
+  }).catch(()=>{$("#badlink").hidden=false});
+})();
+$("#f").addEventListener("submit",e=>{
+  e.preventDefault();
+  const missing=Q.filter(q=>!answered(q));
+  Q.forEach(q=>$("#q_"+q.id).classList.toggle("bad",missing.includes(q)));
+  if(missing.length){$("#st").textContent=missing.length+" question"+(missing.length>1?"s":"")+" still to answer.";$("#q_"+missing[0].id).scrollIntoView({behavior:"smooth",block:"center"});return}
+  $("#go").disabled=true;$("#go").textContent="Sending...";$("#st").textContent="";
+  send(collect(),0);
+});
+$("#edit").addEventListener("click",()=>{$("#done").hidden=true;$("#f").hidden=false;$("#bar").hidden=false;$("#go").disabled=false;$("#go").textContent="Submit my answers"});
+$("#copy").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText($("#sum").textContent);$("#cst").textContent="Copied."}
+  catch(e){const r=document.createRange();r.selectNodeContents($("#sum"));const s=getSelection();s.removeAllRanges();s.addRange(r);$("#cst").textContent="Select and copy the text above."}
+});
+loadDraft();refresh();
+</script></body></html>
